@@ -1,6 +1,9 @@
 package org.spring.demo.homework18spring_restapi.app.controller;
 
-import jakarta.annotation.security.RolesAllowed;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.RequiredArgsConstructor;
 import org.spring.demo.homework18spring_restapi.app.model.dto.NoteRequest;
 import org.spring.demo.homework18spring_restapi.app.model.dto.NoteResponse;
@@ -18,17 +21,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/notes")
 @RequiredArgsConstructor
+@Tags(value = {
+        @Tag(name = "Note controller", description = "Provides basic note management")
+})
 public class NoteController {
     private final NoteService noteService;
 
     @PostMapping
+    @Operation(summary = "Creates a new note", responses = {
+            @ApiResponse(description = "CREATED", responseCode = "201"),
+            @ApiResponse(description = "NOT_FOUND", responseCode = "404")
+    })
     public ResponseEntity<String> createNote(@RequestBody NoteRequest noteRequest) {
-        return noteService.addNote(noteRequest);
+        String addedNote = noteService.addNote(noteRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(addedNote);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<NoteResponse> getNoteById(@PathVariable Long id) {
-        return noteService.getNoteById(id);
+        NoteResponse noteById = noteService.getNoteById(id);
+        return ResponseEntity.ok(noteById);
     }
 
     @PutMapping("/{id}")

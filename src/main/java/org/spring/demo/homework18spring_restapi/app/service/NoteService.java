@@ -29,7 +29,7 @@ public class NoteService {
     private final UserRepository userRepository;
     private final NoteMapper noteMapper;
 
-    public ResponseEntity<String> addNote(NoteRequest noteRequest) {
+    public String addNote(NoteRequest noteRequest) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("Note not found with username " + username));
@@ -38,13 +38,13 @@ public class NoteService {
         note.setUser(user);
 
         noteRepository.save(note);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Note has been saved successfully for user: " + username);
+        return "Note has been saved successfully for user: " + username;
     }
 
-    public ResponseEntity<NoteResponse> getNoteById(Long id) {
+    public NoteResponse getNoteById(Long id) {
         Note note = noteRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Note not found with id " + id));
-        return ResponseEntity.ok().body(noteMapper.toNoteResponse(note));
+        return noteMapper.toNoteResponse(note);
     }
 
     @Transactional

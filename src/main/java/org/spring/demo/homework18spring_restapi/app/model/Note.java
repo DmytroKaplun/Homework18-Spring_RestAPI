@@ -3,15 +3,13 @@ package org.spring.demo.homework18spring_restapi.app.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
 
 @Getter @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity()
