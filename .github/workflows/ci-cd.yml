@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: testcontainers/ryuk:0.3.0
 
     steps:
       - name: Checkout code
@@ -24,6 +25,5 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Run tests
-        run: mvn test --file pom.xml
+
 

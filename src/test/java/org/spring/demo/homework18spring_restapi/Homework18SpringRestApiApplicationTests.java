@@ -14,6 +14,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
+@ContextConfiguration(classes = {TestcontainersConfiguration.class})
 class Homework18SpringRestApiApplicationTests {
 
     @Test
