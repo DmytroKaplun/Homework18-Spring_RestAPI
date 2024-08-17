@@ -7,7 +7,7 @@ public class TestHomework18SpringRestApiApplication {
     public static void main(String[] args) {
         SpringApplication
                 .from(Homework18SpringRestApiApplication::main)
-                .with(TestcontainersConfiguration.class)
+//                .with(TestcontainersConfiguration.class)
                 .run(args);
     }
 
