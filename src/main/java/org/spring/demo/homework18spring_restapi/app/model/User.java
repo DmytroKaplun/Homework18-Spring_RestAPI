@@ -14,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@ToString
+@ToString @Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
@@ -43,6 +43,9 @@ public class User {
     private List<Note> notes = new ArrayList<>();
 
     public void addRole(Role role) {
+        if (this.roles == null) {
+            this.roles = new ArrayList<>();
+        }
         this.roles.add(role);
     }
 

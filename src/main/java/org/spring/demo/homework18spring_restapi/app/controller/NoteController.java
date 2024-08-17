@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,9 @@ public class NoteController {
     })
     public ResponseEntity<String> createNote(@RequestBody NoteRequest noteRequest) {
         String addedNote = noteService.addNote(noteRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedNote);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(addedNote);
     }
 
     @GetMapping("/{id}")
