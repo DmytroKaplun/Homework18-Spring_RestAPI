@@ -14,7 +14,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest
-@AutoConfigureMockMvc(printOnlyOnFailure = false)
 class Homework18SpringRestApiApplicationTests {
 
     @Test
