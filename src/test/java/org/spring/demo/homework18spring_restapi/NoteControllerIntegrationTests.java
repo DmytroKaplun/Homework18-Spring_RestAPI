@@ -1,4 +1,4 @@
-package org.spring.demo.homework18spring_restapi.app.controller;
+package org.spring.demo.homework18spring_restapi;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
